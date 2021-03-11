@@ -1,0 +1,32 @@
+server:
+  port: 8897
+spring:
+  application:
+    name: mqtt-qqq
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/mqtt?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: 123456
+
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+    show-sql: true
+
+
+mqtt:
+  broker-url: tcp://192.168.126.129:1883
+  client-id: emq-client
+  username: admin
+  password: public
+
+
+
+
