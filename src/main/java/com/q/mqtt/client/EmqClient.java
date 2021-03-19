@@ -121,6 +121,25 @@ public class EmqClient {
             log.error("订阅主题失败,errormsg={},topicFilter={},qos={}",e.getMessage(),topicFilter,qos.getValue());
         }
     }
+
+    /**
+     *订阅主题
+     * @param topicFilter
+     * @param mqttCallback
+     * @return void
+     * @Author: qyp
+     * @Date: 2021/3/19 16:37
+     * @Description:
+     */
+    public void subscribe(String topicFilter,MqttCallback mqttCallback){
+        try {
+            log.info("订阅主题为:"+topicFilter);
+            mqttClient.subscribe(topicFilter);
+            mqttClient.setCallback(mqttCallback);
+        } catch (MqttException e) {
+            log.error("订阅主题失败,errormsg={},topicFilter={},qos={}",e.getMessage());
+        }
+    }
     /**
      * 取消订阅
      * @param topicFilter

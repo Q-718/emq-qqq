@@ -1,6 +1,7 @@
 package com.q.mqtt.subscribu;
 
 import com.q.mqtt.client.EmqClient;
+import com.q.mqtt.client.MessageCallBack;
 import com.q.mqtt.client.MqttProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -27,6 +28,9 @@ public class MessageListener {
     @Autowired
     private MqttProperties mqttProperties;
 
+    @Autowired
+    private MessageCallBack messageCallBack;
+
     @EventListener({ContextRefreshedEvent.class})
     public void handleContextStart(ContextRefreshedEvent event) {
         subscribeTestTopic(event);
@@ -42,5 +46,7 @@ public class MessageListener {
      */
     public void subscribeTestTopic(ContextRefreshedEvent event) {
         emqClient.connect(mqttProperties.getUsername(), mqttProperties.getPassword());
+        emqClient.subscribe("testtopic/123",messageCallBack);
+
     }
 }
